@@ -11,18 +11,4 @@ export default defineConfig({
         }),
         react(),
     ],
-
-    server: {
-    host: '192.168.172.23',
-    port: 5173,
-    strictPort: true,
-    cors: true,
-        allowedHosts: [
-          '.ngrok-free.app', 
-        ],
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-    },
-  },
-  envPrefix: 'VITE_',
 });
