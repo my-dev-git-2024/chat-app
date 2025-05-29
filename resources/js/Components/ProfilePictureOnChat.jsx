@@ -1,15 +1,20 @@
 import React from 'react';
-
+import useOnlineUsers from '@/Hooks/useOnlineUsers';
 export default function ProfilePictureOnChat({ user }) {
-    const isOnline = () => {
-        if (!user?.last_seen_at) return false;
 
-        const lastSeen = new Date(user.last_seen_at);
-        const now = new Date();
-        const diffInMinutes = (now - lastSeen) / (1000 * 60); // milliseconds to minutes
+     const onlineUsers = useOnlineUsers();
 
-        return diffInMinutes <= 3; // You can adjust this window
-    };
+    const isOnline = onlineUsers?.some((u) => u.id === user.id);
+
+    // const isOnline = () => {
+    //     if (!user?.last_seen_at) return false;
+
+    //     const lastSeen = new Date(user.last_seen_at);
+    //     const now = new Date();
+    //     const diffInMinutes = (now - lastSeen) / (1000 * 60); 
+
+    //     return diffInMinutes <= 3;
+    // };
 
     return (    
         <div className="inline-block relative">
@@ -20,7 +25,7 @@ export default function ProfilePictureOnChat({ user }) {
             </span>
             <span
                 className={`absolute bottom-0 right-0.5 block h-2 w-2 rounded-full ring-2 ring-white ${
-                    isOnline() ? 'bg-green-500' : 'bg-gray-400'
+                    isOnline ? 'bg-green-500' : 'bg-gray-400'
                 }`}
             />
         </div>

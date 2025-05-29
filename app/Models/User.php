@@ -32,6 +32,11 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    public function isAdmin()
+{
+    return $this->role === 'admin';
+}
+
     protected $hidden = [
         'password',
         'remember_token',
